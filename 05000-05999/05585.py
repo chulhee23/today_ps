@@ -15,3 +15,8 @@ for i, v in enumerate(coins):
         break
 
 print(answer)
+
+for i in coins:
+    count += changes // i
+    changes %= i
+print(count)
