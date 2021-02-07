@@ -29,8 +29,8 @@ def solution(people, limit):
         count += 1
 
     # 서로 같은 사람을 가르킬 때 -> 같은 사람. 바로 탑승 처리.
-    # 서로 다른 사람 가르킬 때 -> 이미 탑승 처리된 사람.
     if i == l:
         count += 1
+    # 서로 다른 사람 가르킬 때 -> 이미 탑승 처리된 사람.
 
     return count
