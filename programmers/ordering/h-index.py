@@ -17,3 +17,9 @@ def solution(citations):
 
 print(solution([2, 0, 6, 1, 5]))
 print(solution([0,0,0,0,0,0]))
+
+
+# def solution(citations):
+#     citations.sort(reverse=True)
+#     answer = max(map(min, enumerate(citations, start=1)))
+#     return answer
