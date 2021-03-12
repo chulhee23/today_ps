@@ -1,16 +1,8 @@
 from collections import deque
+
+
 def solution(begin, target, words):
-    answer = 0
+    if target not in words:
+        return 0
 
-
-    queue = deque()
-
-    queue.append(begin)
     
-    while queue:
-        word = queue.popleft()
-
-        
-
-
-    return answer
