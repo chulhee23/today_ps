@@ -1,14 +1,19 @@
-from collections import Counter
+def solution(clothes):
+    d = dict()
+    for c in clothes:
+        if c[1] in d:
+            d[c[1]].append(c[0])
+        else:
+            d[c[1]] = [c[0]]
+
+    print(d)
+    a = []
+    for arr in d.values():
+        a.append(len(arr) + 1)
+    answer = 1
+    for x in a:
+        answer *= x
+    return answer -1
 
 clothes = [["yellow_hat", 'headgear'], ['blue_sunglasses', 'eyewear'], ['green_turban', 'headgear']]
-def solution(clothes):
-    counter = Counter([cat for _, cat in clothes])
-    print(counter)
-    all_possible = 1
-    for key in counter:
-        all_possible *= (counter[key] + 1)
-
-    return all_possible - 1
-
-
-solution(clothes)
+print(solution(clothes))
