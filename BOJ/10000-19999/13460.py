@@ -6,36 +6,29 @@ n, m = map(int, input().split())
 
 # n 세로
 # m 가로
-arr = []
-red = [0, 0]
-blue = [0, 0]
+arr = [list(input().rstrip()) for _ in range(n)]
 
 
-def init():
-    for i in range(n):
-        s = input().split()
-        for ss in s[0]:
-            if "R" in ss:
-                red[0] = i
-                red[1] = s[0].index("R")
-            if "B" in ss:
-                blue[0] = i
-                blue[1] = s[0].index("B")
-
-        arr.append([ss for ss in s[0]])
-
-
-init()
 visited = [[[[False] * m for _ in range(n)]
             for _ in range(m)] for _ in range(n)]
 
-
-visited[red[0]][red[1]][blue[0]][blue[1]] = True
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 queue = deque()
-queue.append((red, blue, 1))
+
+
+def pos_init():
+    rx, ry, bx, by = 0, 0, 0, 0  # 초기화
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j] == 'R':
+                rx, ry = i, j
+            elif arr[i][j] == 'B':
+                bx, by = i, j
+    # 위치 정보와 depth(breadth 끝나면 +1)
+    queue.append(([rx, ry], [bx, by], 1))
+    visited[rx][ry][bx][by] = True
 
 
 def move(node, dx, dy):
@@ -45,10 +38,13 @@ def move(node, dx, dy):
     while arr[x+dx][y+dy] != "#" and arr[x][y] != "O":
         x += dx
         y += dy
+        cnt += 1
     return x, y, cnt
 
 
 def solution():
+    pos_init()
+
     while queue:
         cur_red, cur_blue, count = queue.popleft()
 
@@ -69,6 +65,8 @@ def solution():
                     return
 
                 if next_red_x == next_blue_x and next_red_y == next_blue_y:
+                    print(
+                        f"same position!!!: {next_red_x} {next_red_y}, move_count_red: {move_count_red}, move_count_blue: {move_count_blue}")
                     if move_count_red > move_count_blue:
                         next_red_x -= dx[i]
                         next_red_y -= dy[i]
@@ -76,10 +74,13 @@ def solution():
                         next_blue_x -= dx[i]
                         next_blue_y -= dy[i]
 
+                print(
+                    f"red: {next_red_x} {next_red_y},  blue: {next_blue_x} {next_blue_y}, count: {count}")
                 if not visited[next_red_x][next_red_y][next_blue_x][next_blue_y]:
+                    print("visit!")
+                    visited[next_red_x][next_red_y][next_blue_x][next_blue_y] = True
                     queue.append(([next_red_x, next_red_y], [
                                  next_blue_x, next_blue_y], count + 1))
-                    visited[next_red_x][next_red_y][next_blue_x][next_blue_y] = True
 
     print(-1)
 
