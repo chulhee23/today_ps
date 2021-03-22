@@ -10,8 +10,6 @@ def prime(number):
 
 
 def solution(numbers):
-    answer = 0 
-
     arr = [i for i in numbers]
     primes = []
     for i in range(1, len(arr)+1):
@@ -27,5 +25,4 @@ def solution(numbers):
 
 
 print(solution("17"))
-
 print(solution("011"))
