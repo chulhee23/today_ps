@@ -1,5 +1,5 @@
+import pdb
 from collections import deque
-
 n = int(input())
 
 arr = []
@@ -92,64 +92,39 @@ def top(graph):
 
     return graph
 
+visited = []
+while queue:
+    graph, count = queue.popleft()
+    visited.append(graph)
 
-def solution():
-    while queue:
-        graph, count = queue.popleft()
-        if count == 5:
-            answer.append(graph)
-        elif (count < 5):
-            count += 1
+    if count == 5:
+        answer.append(graph)
+    elif (count < 5):
+        count += 1
 
-            for i in range(4):
-                tmp = graph
-                l = left(tmp)
-                r = right(tmp)
-                t = top(tmp)
-                b = bottom(tmp)
+        tmp = graph
+        l = left(tmp.copy())
+        r = right(tmp.copy())
+        t = top(tmp.copy())
+        b = bottom(tmp.copy())
 
-                queue.append((l, count))
-                queue.append((r, count))
-                queue.append((t, count))
-                queue.append((b, count))
+        if l not in visited:
+            queue.append((l, count))
+        
+        if r not in visited:
+            queue.append((r, count))
+        
+        if t not in visited:
+            queue.append((t, count))
+        
+        if b not in visited:
+            queue.append((b, count))
+        
 
 
-solution()
 m = 0
-print(len(answer))
 for arr in answer:
     for a in arr:
         if m < max(a):
             m = max(a)
 print(m)
-
-
-# def left(graph):
-#     for i in range(n):
-#         moved = []
-#         for j in range(n-1):
-#             if graph[i][j] == graph[i][j+1]:
-#                 graph[i][j] = graph[i][j] + graph[i][j+1]
-#                 graph[i][j+1] = 0
-#                 moved.append(j+1)
-#         if moved:
-#             for j in range(n-1):
-#                 if j in moved:
-#                     graph[i][j] = graph[i][j+1]
-#                     graph[i][j+1] = 0
-#     return graph
-
-# def right(graph):
-#     for i in range(n):
-#         moved = []
-#         for j in range(1, n):
-#             if graph[i][j-1] == graph[i][j]:
-#                 graph[i][j] = graph[i][j] + graph[i][j-1]
-#                 graph[i][j-1] = 0
-#                 moved.append(j-1) # 0이 되는 부분
-#         if moved:
-#             for j in range(1, n+1):
-#                 if j in moved:
-#                     graph[i][j-1] = graph[i][j] # 0 자리로 이동
-#                     graph[i][j] = 0 # 원래 자리 0
-#     return graph
