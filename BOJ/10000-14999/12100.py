@@ -18,20 +18,29 @@ dy = [0, 0, -1, 1]
 
 
 def left(graph):
-    y = len(graph[0])
-    for i in range(y):
+    for i in len(graph):
         arr = graph[i]
+        
         arr = list(filter(lambda x: x != 0, arr))
         for idx in range(1, len(arr)):
             if arr[idx - 1] == arr[idx]:
                 arr[idx - 1] *= 2
                 arr[idx] = 0
+        
         arr = list(filter(lambda x: x != 0, arr))
 
         while (len(arr) < len(graph[i])):
             arr.append(0)
         graph[i] = arr
     return graph
+
+def rotate(graph):
+    tmp = graph[:]
+    for i in range(len(graph)):
+        for j in range(len(graph)):
+            tmp[j][i] = graph[i][j]
+
+    return tmp
 
 
 def right(graph):
@@ -49,7 +58,6 @@ def right(graph):
             arr.insert(0, 0)
         graph[i] = arr
     return graph
-
 
 def bottom(graph):
     for j in range(len(graph[0])):
@@ -72,7 +80,6 @@ def bottom(graph):
 
     return graph
 
-
 def top(graph):
     for j in range(len(graph[0])):
         arr = []
@@ -92,34 +99,11 @@ def top(graph):
 
     return graph
 
-visited = []
-while queue:
-    graph, count = queue.popleft()
-    visited.append(graph)
 
-    if count == 5:
-        answer.append(graph)
-    elif (count < 5):
-        count += 1
 
-        tmp = graph
-        l = left(tmp.copy())
-        r = right(tmp.copy())
-        t = top(tmp.copy())
-        b = bottom(tmp.copy())
+def dfs(graph):
+    return graph
 
-        if l not in visited:
-            queue.append((l, count))
-        
-        if r not in visited:
-            queue.append((r, count))
-        
-        if t not in visited:
-            queue.append((t, count))
-        
-        if b not in visited:
-            queue.append((b, count))
-        
 
 
 m = 0
@@ -128,3 +112,33 @@ for arr in answer:
         if m < max(a):
             m = max(a)
 print(m)
+
+
+# def bfs():
+#     visited = []
+#     while queue:
+#         graph, count = queue.popleft()
+#         visited.append(graph)
+
+#         if count == 5:
+#             answer.append(graph)
+#         elif (count < 5):
+#             count += 1
+
+#             tmp = graph
+#             l = left(tmp.copy())
+#             r = right(tmp.copy())
+#             t = top(tmp.copy())
+#             b = bottom(tmp.copy())
+
+#             if l not in visited:
+#                 queue.append((l, count))
+
+#             if r not in visited:
+#                 queue.append((r, count))
+
+#             if t not in visited:
+#                 queue.append((t, count))
+
+#             if b not in visited:
+#                 queue.append((b, count))
