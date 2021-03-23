@@ -26,8 +26,7 @@ for i in range(m):
                     count += 1
                 else:
                     continue
-                # if arr[x][y] == "W":
-                    
+
                 for k in range(4):
                     nx = x + dx[k]
                     ny = y + dy[k]
