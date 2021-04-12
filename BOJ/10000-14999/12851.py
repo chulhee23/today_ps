@@ -1,3 +1,6 @@
+# bfs
+# 숨바꼭질 2
+
 import sys
 from collections import deque
 
@@ -5,29 +8,28 @@ input = sys.stdin.readline
 
 n, k = map(int, input().split())
 
-visited = [-1] * 100001 # 적절한 초기화 필요
-
 queue = deque()
-queue.append((n, 0))
+queue.append(n)
 
-ans = 0
+visited = [0] * 100001
+visited[n] = 0
+
+ans_count = 0
+ans_way = 0
 while queue:
-    cur, cnt = queue.popleft()
-    # 목표 도달
-    if cur == k:
-        if visited[cur] == -1:
-            visited[cur] = cnt
-            ans += 1
+    x = queue.popleft()
+    count = visited[x]
+    if x == k:
+        ans_count = count
+        ans_way += 1
+        continue
 
-        elif visited[cur] == cnt:
-            ans += 1
-
-    for nx in [cur+2, cur + 1, cur - 1]:
+    for nx in [x-1, x+1, 2*x]:
         if 0 <= nx < 100001:
-            if visited[nx] == -1 or visited[nx] >= cnt + 1:
-                if cnt + 1 > visited[nx] and visited[k] != -1:
-                    continue
-                queue.append((nx, cnt + 1))
+            if visited[nx] == 0 or visited[nx] == visited[x] + 1:
+                queue.append(nx)
+                visited[nx] = count + 1
+                
 
-print(visited[k])
-print(ans)
+print(ans_count)
+print(ans_way)
