@@ -30,10 +30,11 @@ def dfs(i, j, sum, count):
             ny = j + dy[k]
             if 0 <= nx < n and 0 <= ny < m:
                 if visited[nx][ny] == False:
+                    # start : 핵심이 되는 부분
                     visited[nx][ny] = True
                     dfs(nx, ny, sum + arr[nx][ny], count + 1)
                     visited[nx][ny] = False
-
+                    # end : DFS 에 대한 이해도를 높이자
                     
 def middle(x,y):
     global ans
