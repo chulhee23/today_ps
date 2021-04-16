@@ -1,7 +1,26 @@
 import sys
 input = sys.stdin.readline
 
+n = int(input())
+arr = [ list(map(int, input().split())) for _ in range(n)]
+dp = [[0] * n for _ in range(n)]
 
+
+dx = [1, 0]
+dy = [0, 1]
+
+dp[0][0] = 1
+for i in range(n):
+    for j in range(n):
+        cur = arr[i][j]
+        if cur > 0:
+            if 0<= i + cur < n:
+                dp[i+cur][j] += dp[i][j]
+            
+            if 0<= j + cur < n:
+                dp[i][j+cur] += dp[i][j]
+
+print(dp[-1][-1])
 
 
 
