@@ -1,3 +1,5 @@
+# BFS
+# 아주 쉬운 아기 상어2
 from collections import deque
 
 n, m = map(int, input().split())
