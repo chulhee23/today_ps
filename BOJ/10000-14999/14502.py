@@ -40,7 +40,7 @@ def bfs():
                 if graph[nx][ny] == 0:
                     graph[nx][ny] = 2
                     queue.append((nx, ny))
-
+    
     tmp = 0
     for tmp_row in graph:
         tmp += tmp_row.count(0)
