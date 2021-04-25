@@ -39,12 +39,13 @@ def dfs(x, y, path, isConst):
                 # 최소로 깎아야함
                 for j in range(1, k+1):
                     arr[nx][ny] -= j 
+                    isConst = True
                     if arr[x][y] > arr[nx][ny]:
                         # 공사 완료
-                        isConst = True
                         visited[nx][ny] = 1
                         dfs(nx, ny, path + 1, isConst)
                         visited[nx][ny] = 0
+                    isConst = False
                     arr[nx][ny] += j
 
 
