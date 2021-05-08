@@ -90,8 +90,8 @@ for _ in range(m):
 
 
 def dijkstra(start):
-    q=  []
-    heapq.heappush((0, start))
+    q = []
+    heapq.heappush(q, (0, start))
     distance[start] = 0
     while q:
         # 최단 거리 노드 정보 꺼내기
