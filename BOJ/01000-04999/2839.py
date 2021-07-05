@@ -1,0 +1,3 @@
+# DP
+
+n = int(input())
