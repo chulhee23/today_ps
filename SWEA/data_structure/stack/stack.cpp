@@ -1,18 +1,6 @@
 #include <iostream>
 #include <string>
-
-
-class Node{
-  friend class Stack;
-private:
-  int val;
-  Node *next;
-  Node(int value = 0, Node *newNode = nullptr){
-    val = value;
-    next = newNode;
-  }
-
-};
+#include "Node.cpp"
 
 class Stack{
 private:
