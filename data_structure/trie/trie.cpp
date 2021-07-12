@@ -1,4 +1,5 @@
 #include <string.h>
+#include <iostream>
 
 using namespace std;
 
@@ -48,6 +49,10 @@ int main(int argc, char const *argv[])
   for (int i = 0; i < 5; i++)
   {
     root -> insert(c[i]);
+  }
+  for (int i = 0; i < 5; i++)
+  {
+    cout << (root -> find(c[i]));
   }
 
   
