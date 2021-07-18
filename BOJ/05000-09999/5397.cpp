@@ -19,7 +19,6 @@ int main(int argc, char const *argv[])
     cin >> str;
     list<char> ans;
     auto cur = ans.begin(); // cursor 의 초기 위치
-
     for(int i = 0; i < str.length(); i++){
       if(str[i] == '<'){
         if(cur == ans.begin()) continue;
@@ -31,8 +30,8 @@ int main(int argc, char const *argv[])
       }
       else if(str[i] == '-'){
         if(cur == ans.begin()) continue;
-        ans.erase(--cur); // 삭제한 원소의 다음 원소를 가리킨다 
-        // 이해 안감... 다시 복습
+        cur = ans.erase(--cur); // 삭제한 원소의 다음 원소를 가리킨다 
+        
       }
       else {
         ans.insert(cur, str[i]);
