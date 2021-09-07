@@ -1,3 +1,4 @@
+# 분할정복
 import sys
 input = sys.stdin.readline
 
