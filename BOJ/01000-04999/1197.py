@@ -9,7 +9,7 @@ v, e = map(int, input().split())
 edge = []
 for i in range(e):
     a, b, w = map(int, input().split())
-    edge.append(w, a, b)
+    edge.append([w, a, b])
 
 # 유니온 파인드
 # 가중치 기준으로 작은 값부터 정렬
