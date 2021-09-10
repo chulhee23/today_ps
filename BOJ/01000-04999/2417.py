@@ -1,3 +1,4 @@
+# 이분탐색
 import sys
 
 input = sys.stdin.readline
