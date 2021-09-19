@@ -1,4 +1,4 @@
-# if 문 대신, 이분탐색!
+# if 문 대신, 이분탐색! 무한루프 없음
 
 import sys
 input = sys.stdin.readline
